@@ -55,7 +55,7 @@ defaults_bo:
     listen:
       - '0.0.0.0'
       - '::'
-    port: "{{ ansible_port }}"
+    port: "{{ ansible_port }}"  # can be list of multiple
     allow_root: false
     auth_multi: false  # require both publickey and password
     auth_pwd: true  # allowing password-authentication
@@ -76,5 +76,8 @@ defaults_bo:
       - '|       Proceed with care!       |'
       - '----------------------------------'
       - ' '
+    match:
+      address: {}  # example: '10.0.0.*': ['PermitRootLogin yes']
+      user: {}
 
 bootstrap: {}

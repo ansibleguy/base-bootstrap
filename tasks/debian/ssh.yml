@@ -56,6 +56,6 @@
 - name: Bootstrap | SSH | Updating ssh-config used by this ansible-execution
   ansible.builtin.set_fact:
     ansible_user: "{{ BOOTSTRAP.post_ssh_user | default(ansible_user) | default(ansible_ssh_user) }}"
-    ansible_become_pass: "{{ BOOTSTRAP.post_ssh_pass | default(ansible_ssh_pass) }}"
+    ansible_become_pass: "{{ BOOTSTRAP.post_ssh_pass | default(ansible_ssh_pass) | default(omit) }}"
     ansible_port: "{{ BOOTSTRAP.ssh.port }}"
   when: ansible_port|int != BOOTSTRAP.ssh.port|int

@@ -6,7 +6,9 @@
 ListenAddress {{ listen }}
 {% endfor %}
 
-Port {{ BOOTSTRAP.ssh.port }}
+{% for port in BOOTSTRAP.ssh.port | ensure_list %}
+Port {{ port }}
+{% endfor %}
 PermitRootLogin {% if BOOTSTRAP.ssh.allow_root | bool %}yes{% else %}no{% endif %}
 
 {% if BOOTSTRAP.ssh.auth_multi | bool %}
@@ -40,3 +42,17 @@ AcceptEnv LANG LC_*
 Subsystem       sftp    /usr/lib/openssh/sftp-server
 PrintMotd no
 KbdInteractiveAuthentication no
+
+{% for address, config in BOOTSTRAP.ssh.match.address.items() %}
+Match Address {{ address }}
+{%   for line in config | ensure_list %}
+    {{ line }}
+{%   endfor %}
+{% endfor %}
+
+{% for user, config in BOOTSTRAP.ssh.match.user.items() %}
+Match User {{ user }}
+{%   for line in config | ensure_list %}
+    {{ line }}
+{%   endfor %}
+{% endfor %}

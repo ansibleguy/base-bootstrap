@@ -2,7 +2,7 @@
 
 # todo: move auto-update to own repository and add pip-autoupgrade (multi-venv) option
 
-- name: Bootstrap | AutoUpdate | Install update tool
+- name: Bootstrap | AutoUpdate | Install
   ansible.builtin.apt:
     name: "{{ BOOTY_HC.update_packages }}"
     state: present
