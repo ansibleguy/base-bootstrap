@@ -55,7 +55,7 @@ python3 -m pip install -r requirements.txt
 
 * **Note:** Most of the role's functionality can be opted in or out.
 
-  For all available options - see the default-config located in the main defaults-file!
+  For all available options - see the default-config located in [the main defaults-file](https://github.com/ansibleguy/linux_bootstrap/blob/latest/defaults/main/1_main.yml)!
 
 
 
