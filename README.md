@@ -31,46 +31,7 @@ ansible-galaxy install -r requirements.yml
 python3 -m pip install -r requirements.txt
 ```
 
-## Functionality
-
-* **Package installation**
-  * Ansible dependencies (_minimal_)
-  * Administrative tools
-  * Virtual machine guest-tools (_vmware/kvm_)
-  * lightweight administrative tools
-
-
-* **Default opt-in**:
-  * OpenSSH server
-  * Users/Groups => using [THIS](https://github.com/ansibleguy/linux_users) role
-
-
-* **Default opt-out**:
-  * Auto-updates
-  * UFW => using [THIS](https://github.com/ansibleguy/linux_ufw) role
-  * Network(-interfaces) => using [THIS](https://github.com/ansibleguy/linux_networking) role
-
-
-## Info
-
-* **Note:** Most of the role's functionality can be opted in or out.
-
-  For all available options - see the default-config located in [the main defaults-file](https://github.com/ansibleguy/linux_bootstrap/blob/latest/defaults/main/1_main.yml)!
-
-
-
-* **Note:** this role currently only supports debian-based systems
-
-
-* **Warning:** Not every setting/variable you provide will be checked for validity. Bad config might break the role!
-
-
-* **Info:** Prerequisites:
-
-  1. You must be able to connect via ssh with a user that has root privileges.
-  The easiest way to do this - is to set 'PermitRootLogin' to 'yes' temporarily and restart the sshd service.
-
-  2. Connect to the server one time using ssh to mark the host-key as known.
+----
 
 ## Usage
 
@@ -180,3 +141,46 @@ There are also some useful **tags** available:
 * ssh
 * part1
 * part2
+
+----
+
+## Functionality
+
+* **Package installation**
+  * Ansible dependencies (_minimal_)
+  * Administrative tools
+  * Virtual machine guest-tools (_vmware/kvm_)
+  * lightweight administrative tools
+
+
+* **Default opt-in**:
+  * OpenSSH server
+  * Users/Groups => using [THIS](https://github.com/ansibleguy/linux_users) role
+
+
+* **Default opt-out**:
+  * Auto-updates
+  * UFW => using [THIS](https://github.com/ansibleguy/linux_ufw) role
+  * Network(-interfaces) => using [THIS](https://github.com/ansibleguy/linux_networking) role
+
+
+## Info
+
+* **Note:** Most of the role's functionality can be opted in or out.
+
+  For all available options - see the default-config located in [the main defaults-file](https://github.com/ansibleguy/linux_bootstrap/blob/latest/defaults/main/1_main.yml)!
+
+
+
+* **Note:** this role currently only supports debian-based systems
+
+
+* **Warning:** Not every setting/variable you provide will be checked for validity. Bad config might break the role!
+
+
+* **Info:** Prerequisites:
+
+  1. You must be able to connect via ssh with a user that has root privileges.
+  The easiest way to do this - is to set 'PermitRootLogin' to 'yes' temporarily and restart the sshd service.
+
+  2. Connect to the server one time using ssh to mark the host-key as known.
