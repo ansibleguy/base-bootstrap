@@ -9,8 +9,18 @@
     Do you want to continue? (YES/no)"
   register: ssh_lockout_check
   when:
-    - not BOOTSTRAP.ssh.allow_root
+    - not BOOTSTRAP.ssh.allow_root | bool
     - not BOOTSTRAP.configure_users | bool or system_auth.users is not defined or system_auth.users|length == 0
+
+- name: Bootstrap | SSH | Warn about Password-Auth
+  ansible.builtin.pause:
+    prompt: 'WARNING: You have SSH password authentication active! Make sure you want this as it can be a SECURITY issue!'
+  when: BOOTSTRAP.ssh.auth_pwd | bool
+
+- name: Bootstrap | SSH | Warn about Root Login
+  ansible.builtin.pause:
+    prompt: 'WARNING: You have SSH root login active! Make sure you want this as it can be a SECURITY issue!'
+  when: BOOTSTRAP.ssh.allow_root | bool
 
 - name: Bootstrap | SSH | Deploying ssh config
   ansible.builtin.template:
@@ -59,3 +69,4 @@
     ansible_become_pass: "{{ BOOTSTRAP.post_ssh_pass | default(ansible_ssh_pass) | default(omit) }}"
     ansible_port: "{{ BOOTSTRAP.ssh.port }}"
   when: ansible_port|int != BOOTSTRAP.ssh.port|int
+  ignore_errors: true

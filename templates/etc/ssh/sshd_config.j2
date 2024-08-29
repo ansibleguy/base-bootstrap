@@ -17,9 +17,9 @@ PasswordAuthentication yes
 PubkeyAuthentication yes
 
 {% else %}
-PubkeyAuthentication {% if BOOTSTRAP.ssh.auth_pwd | bool %}yes{% else %}no{% endif %}
+PubkeyAuthentication {% if BOOTSTRAP.ssh.auth_pubkey | bool %}yes{% else %}no{% endif %}
 
-PasswordAuthentication {% if BOOTSTRAP.ssh.auth_pubkey | bool %}yes{% else %}no{% endif %}
+PasswordAuthentication {% if BOOTSTRAP.ssh.auth_pwd | bool %}yes{% else %}no{% endif %}
 {% endif %}
 
 
