@@ -34,6 +34,23 @@
   ansible.builtin.hostname:
     name: "{{ BOOTSTRAP.hostname | default(inventory_hostname) }}"
 
+- name: Bootstrap | Debian Repository (over HTTPS)
+  ansible.builtin.template:
+    src: 'templates/etc/apt/sources.list.j2'
+    dest: '/etc/apt/sources.list'
+    owner: 'root'
+    group: 'root'
+    mode: 0644
+  when: ansible_distribution | lower == 'debian'
+  register: deb_repo
+  tags: repo
+
+- name: Bootstrap | Updating apt-cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: deb_repo.changed
+  tags: repo
+
 - name: Bootstrap | Processing debian base-config
   ansible.builtin.import_tasks: debian/main.yml
   when: "ansible_distribution | lower in ['debian', 'ubuntu']"

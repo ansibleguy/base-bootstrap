@@ -80,4 +80,7 @@ defaults_bo:
       address: {}  # example: '10.0.0.*': ['PermitRootLogin yes']
       user: {}
 
+  repo:
+    provider: 'debian.org'  # or 'hetzner.com'
+
 bootstrap: {}
