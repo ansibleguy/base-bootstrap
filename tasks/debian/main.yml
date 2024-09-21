@@ -65,3 +65,10 @@
     - au_removal.failed
     - "'does not exist' not in au_removal.msg"
     - "'Could not find' not in au_removal.msg"
+
+- name: Bootstrap | Lower swappiness by default
+  ansible.posix.sysctl:
+    name: vm.swappiness
+    value: '1'
+    state: present
+  when: BOOTSTRAP.lower_swappiness | bool
